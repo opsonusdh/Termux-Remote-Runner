@@ -1,10 +1,10 @@
-⚡ Termux Remote Runner
+# ⚡ Termux Remote Runner
 
 A web-based control panel for Termux that allows you to execute predefined commands on your Android device using a dynamic UI.
 
 ---
 
-🚀 Features
+## 🚀 Features
 
 - 🔧 Schema-driven UI (auto-generates forms from command definitions)
 - ⚙️ Dynamic command execution (no hardcoding logic)
@@ -18,7 +18,7 @@ A web-based control panel for Termux that allows you to execute predefined comma
 
 ---
 
-🧠 How It Works
+## 🧠 How It Works
 
 1. Commands are defined in "command_schema.py"
 2. Frontend fetches schema → builds UI dynamically
@@ -28,18 +28,7 @@ A web-based control panel for Termux that allows you to execute predefined comma
 
 ---
 
-📁 Project Structure
-
-.
-├── app.py                 # Flask backend
-├── command_schema.py      # Command definitions (UI + execution)
-├── templates/
-│   └── index.html         # Frontend UI
-├── .gitignore
-
----
-
-⚙️ Setup (Termux)
+## ⚙️ Setup (Termux)
 
 Install dependencies:
 
@@ -49,7 +38,7 @@ pip install flask
 
 ---
 
-▶️ Run the App
+## ▶️ Run the App
 
 python app.py
 
@@ -59,7 +48,7 @@ http://localhost:5000
 
 ---
 
-🔐 Security Notes
+## 🔐 Security Notes
 
 - Only predefined commands are allowed
 - No raw shell execution
@@ -68,8 +57,8 @@ http://localhost:5000
 
 ---
 
-🧩 Example Command Schema
-
+## 🧩 Example Command Schema
+``` json
 "torch": {
     "command": ["termux-torch", "{state}"],
     "fields": {
@@ -79,10 +68,11 @@ http://localhost:5000
         }
     }
 }
+```
 
 ---
 
-📌 Future Improvements
+## 📌 Future Improvements
 
 - Authentication system
 - Command history/logs
@@ -92,14 +82,14 @@ http://localhost:5000
 
 ---
 
-⚠️ Disclaimer
+## ⚠️ Disclaimer
 
 This project can control device-level features.
 Use responsibly. Misuse can lead to data loss or unintended behavior.
 
 ---
 
-🧑‍💻 Author
+## 🧑‍💻 Author
 
 Built as a learning project exploring:
 
