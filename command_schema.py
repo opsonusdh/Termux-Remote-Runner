@@ -144,9 +144,9 @@ COMMAND_SCHEMA = {
 },
 
 "notification": {
-    "command": ["termux-notification", "-t", "{title}", "-c", "{content}"],
+    "command": ["termux-notification", "-t", "{heading}", "-c", "{content}"],
     "fields": {
-        "title": {"type": "text"},
+        "heading": {"type": "text"},
         "content": {"type": "text"}
     }
 },
