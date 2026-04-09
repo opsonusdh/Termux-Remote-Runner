@@ -58,7 +58,7 @@ http://localhost:5000
 ---
 
 ## 🧩 Example Command Schema
-
+``` json
 "torch": {
     "command": ["termux-torch", "{state}"],
     "fields": {
@@ -68,6 +68,7 @@ http://localhost:5000
         }
     }
 }
+```
 
 ---
 
