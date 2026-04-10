@@ -1,4 +1,10 @@
 COMMAND_SCHEMA = {
+"execute": {
+    "command_raw": True,
+    "fields": {
+        "command": {"type": "text"}
+    }
+},
 "battery": {
     "command": ["termux-battery-status"],
     "fields": {}

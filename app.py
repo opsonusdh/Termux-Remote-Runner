@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import subprocess
+import shlex
 from command_schema import COMMAND_SCHEMA
 
 app = Flask(__name__)
@@ -31,7 +32,19 @@ def run_command():
             return jsonify({"error": f"{key} is required"}), 400
 
     try:
-        # 🔥 Build command dynamically
+        cmd_raw = schema.get("command_raw", False)
+        if schema.get("command_raw", False):
+            cmd_list = shlex.split(data["command"])
+
+            result = subprocess.run(
+                cmd_list,
+                capture_output=True,
+                text=True,
+                timeout=10
+            )
+
+            return jsonify({"output": result.stdout or result.stderr})
+
         cmd_template = schema["command"]
         final_cmd = []
 
