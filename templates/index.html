@@ -31,11 +31,16 @@
     </div>
 </div>
 
-
-
-
-
-
+<div id="lockScreen">
+    <div id="lockWrapper">
+        <h1 id="lockHeading">LOCKED</h1>
+        <br>
+        <input type="number" id="passwordInput" placeholder="Enter Password">
+        <br><br>
+        <button onclick="verifyPassword()">Unlock</button>
+        <p id="lockError" style="color:red;"></p>
+    </div>
+</div>
 
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 

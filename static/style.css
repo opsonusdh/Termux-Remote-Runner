@@ -93,6 +93,8 @@ button {
     color: #00ff9c;
     cursor: pointer;
     transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 
@@ -100,6 +102,26 @@ button:active {
     background: #00ff9c;
     color: black;
     box-shadow: 0 0 15px #00ff9caa;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(0, 255, 156, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 /* STATUS */
@@ -148,4 +170,36 @@ button:active {
     width: 100%;
     padding: 12px;
     box-sizing: border-box;
+}
+
+#lockScreen{
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 200px; height: 250px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0, 0.8);
+    color: #00ff9f;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    border-radius: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    border: 1px solid #00ff9c55;
+}
+
+#lockWrapper{
+    text-align:center;
+}
+
+#lockHeading{
+    margin: 0;
+    border-bottom: 1px solid #00ff9c33;
+    text-shadow: 0 0 10px #00ff9c88;
+}
+
+#passwordInput{
+    padding:10px;
+    font-size:16px;
+    width: 140px;
 }

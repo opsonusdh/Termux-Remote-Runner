@@ -1,3 +1,4 @@
+const LOCK_DURATION = 10 * 60 * 1000;
 let schema = {};
 
 fetch("/schema")
@@ -96,3 +97,56 @@ function runCommand() {
         document.getElementById("status").innerText = "Error";
     });
 }
+
+function checkLock() {
+    const lastUnlock = localStorage.getItem("unlockTime");
+
+    if (!lastUnlock) {
+        showLock();
+        return;
+    }
+
+    const now = Date.now();
+    if (now - parseInt(lastUnlock) > LOCK_DURATION) {
+        showLock();
+    }
+}
+
+function showLock() {
+    document.getElementById("lockScreen").style.display = "flex";
+    document.getElementsByClassName("main")[0].style.display = "none";
+}
+
+function hideLock() {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementsByClassName("main")[0].style.display = "block";
+}
+
+async function verifyPassword() {
+    const password = document.getElementById("passwordInput").value;
+
+    try {
+        const res = await fetch("/verify", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ password })
+        });
+
+        const data = await res.json();
+
+        if (res.status === 200) {
+            localStorage.setItem("unlockTime", Date.now());
+            hideLock();
+        } else {
+            document.getElementById("lockError").innerText = "Wrong password";
+        }
+
+    } catch (err) {
+        document.getElementById("lockError").innerText = "Server error";
+    }
+}
+
+window.onload = function() {
+    checkLock();
+    setInterval(checkLock, 30000);
+};

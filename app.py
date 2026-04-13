@@ -1,13 +1,34 @@
 from flask import Flask, request, jsonify, render_template
 import subprocess
+from datetime import datetime
 import shlex
 from command_schema import COMMAND_SCHEMA
 
 app = Flask(__name__)
 
+def generate_password():
+    now = datetime.now()
+    H = now.hour
+    M = now.minute
+    return 5 * H + (M // 2)
+
 @app.route("/")
 def home():
     return render_template("index.html")
+    
+
+@app.route("/verify", methods=["POST"])
+def verify():
+    data = request.json
+    user_pass = data.get("password")
+
+    if user_pass is None:
+        return jsonify({"error": "Password required"}), 400
+
+    if int(user_pass) == generate_password():
+        return jsonify({"status": "success"})
+    else:
+        return jsonify({"status": "fail"}), 401
 
 
 @app.route("/schema")
@@ -70,4 +91,5 @@ def run_command():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+    
 app.run(host="0.0.0.0", port=5000)
