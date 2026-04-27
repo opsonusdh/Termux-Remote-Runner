@@ -31,21 +31,21 @@ A web-based control panel for Termux that allows you to execute predefined comma
 ## ⚙️ Setup (Termux)
 
 Install dependencies:
-
+``` bash
 pkg update
 pkg install python termux-api
 pip install flask
-
+```
 ---
 
 ## ▶️ Run the App
-
+``` bash
 python app.py
-
+```
 Open in browser:
-
+```
 http://localhost:5000
-
+```
 ---
 
 ## 🔐 Security Notes
